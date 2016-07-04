@@ -1,0 +1,121 @@
+<?xml version="1.0" standalone="yes" ?>
+<table name="plugins.assentamentoanexos" description="Guarda anexos do assentamento" prefix="" label="Anexos Assentamento" type="0">
+ <fields>
+    <field name="sequencial"
+           conteudo="int4"
+           description="Sequencial"
+           inivalue="0"
+           label="Sequencial"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Sequencial"
+           reference=""
+           ispk="t"
+           hassequence="t">
+      <sequence name="plugins.assentamentoanexos_sequencial_seq"></sequence>
+    </field>
+    <field name="assentamento"
+           conteudo="int4"
+           description="Assentamento"
+           inivalue="0"
+           label="Assentamento"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Assentamento"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="arquivo"
+           conteudo="varchar(200)"
+           description="Nome do Arquivo"
+           inivalue=""
+           label="Nome do Arquivo"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="0"
+           tipoobj="text"
+           labelrel="Nome Arquivo"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="arquivooriginal"
+           conteudo="varchar(200)"
+           description="Nome do Arquivo Original"
+           inivalue=""
+           label="Nome do Arquivo Original"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="0"
+           tipoobj="text"
+           labelrel="Nome Arquivo original"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="caminhoarquivo"
+           conteudo="varchar(200)"
+           description="Caminho do Arquivo"
+           inivalue=""
+           label="Caminho do Arquivo"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="0"
+           tipoobj="text"
+           labelrel="Caminho Arquivo"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="data"
+           conteudo="date"
+           description="Data"
+           inivalue=""
+           label="Data"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="0"
+           tipoobj="text"
+           labelrel="Data"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field> 
+    <field name="ativo"
+           conteudo="varchar(1)"
+           description="Ativo"
+           inivalue=""
+           label="Ativo"
+           size="2"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="0"
+           tipoobj="text"
+           labelrel="Ativo"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>       
+  </fields>
+  <primarykey>
+    <fieldpk name="sequencial"></fieldpk>
+  </primarykey>
+</table>

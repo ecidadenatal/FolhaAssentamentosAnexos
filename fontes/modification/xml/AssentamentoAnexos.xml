@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<modification>
+  <name>AssentamentoAnexos</name>
+  <id>Assentamento Anexos</id>
+  <ecidade-version>2.3.39</ecidade-version>
+  <file path='rec1_assenta001.php'>
+    <operation>
+      <search regex="true"><![CDATA[db_redireciona\(.*\);]]></search>
+      <add>
+        <![CDATA[/*Assentamento Anexos*/
+    db_msgbox($msg);
+
+    echo "<script>                                                                                    ";
+    echo "  parent.document.formaba.anexos.disabled = false;                                          ";
+    echo "  parent.iframe_anexos.location.href      = 'rec1_assentamentoanexos001.php?iAssentamento={$oAssentamento->getCodigo()}';";
+    echo "  parent.mo_camada('anexos');                                                               ";
+    echo "  location.href = 'rec1_assenta002.php?chavepesquisa={$oAssentamento->getCodigo()}'";
+    echo "</script>";
+    ]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true" flag="U"><![CDATA[<table .*bgcolor="\#5786B2">((\n*.*)*)<\/table>]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true"><![CDATA[db_menu\(.*\);]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+  </file>
+  <file path='rec1_assenta002.php'>
+    <operation>
+      <search regex="true"><![CDATA[db_redireciona\(.*\);]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true" flag="U"><![CDATA[<table .*bgcolor="\#5786B2">((\n*.*)*)<\/table>]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true" flag="U"><![CDATA[(db_fieldsmemory\(\s*\$result,0\);)]]></search>
+      <add>
+        <![CDATA[$1
+        
+  echo "<script>                                                                                    ";
+  echo "  parent.document.formaba.anexos.disabled = false;                                          ";
+  echo "  parent.iframe_anexos.location.href      = 'rec1_assentamentoanexos001.php?iAssentamento={$chavepesquisa}';";
+  echo "</script> ";
+  
+         ]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true"><![CDATA[db_menu\(.*\);]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+  </file>
+  <file path='rec1_assenta003.php'>
+    <operation>
+      <search regex="true" flag="U"><![CDATA[<table .*bgcolor="\#5786B2">((\n*.*)*)<\/table>]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true"><![CDATA[db_menu\(.*\);]]></search>
+      <add>
+        <![CDATA[]]>
+      </add>
+    </operation>
+  </file>
+  <file path='forms/db_frmassenta.php'>
+    <operation>
+      <search regex="true"><![CDATA[<fieldset\s*style\s*=.*>]]></search>
+      <add>
+        <![CDATA[<fieldset>]]>
+      </add>
+    </operation>
+    <operation>
+      <search regex="true" limit="-1"><![CDATA[(js_OpenJanelaIframe\s*\(\s*'CurrentWindow.corpo)]]></search>
+      <add>
+        <![CDATA[$1.iframe_assentamento]]>
+      </add>
+    </operation>
+  </file>
+</modification>

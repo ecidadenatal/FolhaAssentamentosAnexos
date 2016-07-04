@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <plugin name="AssentamentoAnexos" label="Assentamento Anexos" plugin-version="1.0" ecidade-version="2.3.39" id-modulo="2323">
+   <id id="AssentamentoAnexos"> </id>
+   <files>
+    <!-- rpc -->
+    <file name="rec1_assentamentoAnexos.RPC.php"    path="/rec1_assentamentoAnexos.RPC.php" />
+    <!-- classe -->
+    <file name="db_assentamentoanexos_classe.php"    path="/classes/db_assentamentoanexos_classe.php" />
+    <!-- outro -->
+    <file name="rec1_assentamentoanexos001.php"       path="/rec1_assentamentoanexos001.php" />
+    <file name="rec1_assenta006.php"                  path="/rec1_assenta006.php" />
+    <file name="rec1_assenta005.php"                  path="/rec1_assenta005.php" />
+    <file name="rec1_assenta004.php"                  path="/rec1_assenta004.php" />
+    <file name="AssentamentoAnexos.xml"               path="/modification/xml/AssentamentoAnexos.xml" />
+    <file name="plugins.assentamentoanexos.dd.xml"    path="/dd/tabelas/plugins.assentamentoanexos.dd.xml" />
+   </files>
+   
+   <estrutura install="/instalacao.sql" uninstall="/desinstalacao.sql">
+   </estrutura>
+  </plugin>  
+</manifest>
