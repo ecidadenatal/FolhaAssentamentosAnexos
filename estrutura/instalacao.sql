@@ -7,8 +7,8 @@ create table plugins.assentamentoanexos (sequencial integer,
                                          ativo varchar(1));
 create sequence plugins.assentamentoanexos_sequencial_seq;
 
-update configuracoes.db_itensmenu set funcao = 'rec1_assenta004.php' where id_item = 5578;
-update configuracoes.db_itensmenu set funcao = 'rec1_assenta005.php' where id_item = 5579;
-update configuracoes.db_itensmenu set funcao = 'rec1_assenta006.php' where id_item = 5580;
+--update configuracoes.db_itensmenu set funcao = 'rec1_assenta004.php' where id_item = 5578;
+--update configuracoes.db_itensmenu set funcao = 'rec1_assenta005.php' where id_item = 5579;
+--update configuracoes.db_itensmenu set funcao = 'rec1_assenta006.php' where id_item = 5580;
 
                                           

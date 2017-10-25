@@ -87,10 +87,25 @@
       </add>
     </operation>
     <operation>
+      <search regex="true"><![CDATA[iframeParent\s*=.*IFassentamentofuncional.*;]]></search>
+      <add>
+        <![CDATA[//iframeParent = 'parent.frames.IFassentamentofuncional.';]]>
+      </add>
+    </operation>
+    <operation>
       <search regex="true" limit="-1"><![CDATA[(js_OpenJanelaIframe\s*\(\s*'CurrentWindow.corpo)]]></search>
       <add>
         <![CDATA[$1.iframe_assentamento]]>
       </add>
     </operation>
   </file>
+    <file path='pes3_conspessoal002.php'>
+    <operation>
+      <search><![CDATA[rec3_consafastfunc002.php]]></search>
+      <add>
+        <![CDATA[rec3_consultaAssentamentoAnexos001.php]]>
+      </add>
+    </operation>
+  </file>
+  
 </modification>

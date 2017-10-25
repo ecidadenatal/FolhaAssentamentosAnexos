@@ -25,12 +25,13 @@
  *                                licenca/licenca_pt.txt 
  */
 
-require("libs/db_stdlib.php");
-require("libs/db_conecta_plugin.php");
-include("libs/db_sessoes.php");
-include("libs/db_usuariosonline.php");
-include("dbforms/db_funcoes.php");
+require_once(modification("libs/db_stdlib.php"));
+require_once(modification("libs/db_conecta_plugin.php"));
+require_once(modification("libs/db_sessoes.php"));
+require_once(modification("dbforms/db_funcoes.php"));
+
 db_postmemory($HTTP_POST_VARS);
+
 parse_str($HTTP_SERVER_VARS["QUERY_STRING"]);
 $clrotulo = new rotulocampo;
 
@@ -81,9 +82,8 @@ if (isset($arquivo)) {
       throw new Exception("Erro ao enviar arquivo.");
     }
     
-    /*
-     * Resize da imagem
-     */
+   
+    // Resize da imagem
     if ($sExtensao != "pdf") {
     	
       switch($sExtensao) {
@@ -201,8 +201,7 @@ function js_testacampo(){
 <body bgcolor=#CCCCCC leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <center>
 <br>
-<form name="form1" method="post" action="" enctype="multipart/form-data">
-<input type="hidden" name="MAX_FILE_SIZE" value="<?=$nTamanhoMaximoBytes?>">
+<form name="form1" id='form1' method="post" action="" enctype="multipart/form-data">
 <fieldset style="width: 80%">
  <legend>Anexos</legend>
  <table width="100%">
@@ -217,9 +216,9 @@ function js_testacampo(){
               <b>Arquivo:</b>
             </td>
             <td> 
-        			<?
+        	 <?
            	  db_input("arquivo",30,0,true,"file",1);
-        			?>
+        	 ?>
             </td>
           </tr>
         </table>
@@ -247,22 +246,17 @@ function js_testacampo(){
 </body>
 </html>
 <script>
-  sUrlRPC = "rec1_assentamentoAnexos.RPC.php";
+  var sUrlRPC = "rec1_assentamentoAnexos.RPC.php";
 
-  function js_init() {
-    gridAnexos              = new DBGrid("gridAnexos");
-    gridAnexos.nameInstance = "gridAnexos";
-    gridAnexos.setCellWidth(new Array("10%","70%", "10%", "5%"));
-    gridAnexos.setCellAlign(new Array("center", "left","center", "center"));
-    gridAnexos.setHeader(new Array("Sequencial","Arquivo","Data","Ativo"));
-    gridAnexos.show(document.getElementById('gridAnexos'));
+  gridAnexos              = new DBGrid("gridAnexos");
+  gridAnexos.nameInstance = "gridAnexos";
+  gridAnexos.setCellWidth(new Array("10%","65%", "10%", "10%", "5%"));
+  gridAnexos.setCellAlign(new Array("center", "left","center", "center","center"));
+  gridAnexos.setHeader(new Array("Sequencial","Arquivo","Data","Download","Ativo"));
+  gridAnexos.show(document.getElementById('gridAnexos'));
 
-    js_buscaDadosGrid();
+  js_buscaDadosGrid();
     
-  }
-
-  js_init();
-  
   function js_buscaDadosGrid() {
 	  
     var oParametros = new Object();
@@ -293,21 +287,31 @@ function js_testacampo(){
   	  	  var dData       = js_formatar(oRetorno.oDadosAnexos[iArquivo].data, 'd');	   
   	  	  var iSituacao   = oRetorno.oDadosAnexos[iArquivo].ativo;   	
   	  	  
-          var aLinha  = new Array();
+  	  	  var aLinha  = new Array();
           aLinha[0]  = iSequencial
           aLinha[1]  = sArquivo;
           aLinha[2]  = dData;
-          aLinha[3]  = "<input type='checkbox' name='anexo_"+iSequencial+"'";
+          aLinha[3]  = '<input type="button" value="Dowload" onclick="js_downloadAnexo(\''+oRetorno.oDadosAnexos[iArquivo].caminhoarquivo+'\')">';
+          aLinha[4]  = "<input type='checkbox' name='anexo_"+iSequencial+"'";
           if (iSituacao=='t') {
-            aLinha[3] += " checked onclick='js_alterarSituacaoAnexo("+iSequencial+",\"f\")' >";
+            aLinha[4] += " checked onclick='js_alterarSituacaoAnexo("+iSequencial+",\"f\")' >";
           } else {
-        	aLinha[3] += " onclick='js_alterarSituacaoAnexo("+iSequencial+",\"t\")' >";
+        	aLinha[4] += " onclick='js_alterarSituacaoAnexo("+iSequencial+",\"t\")' >";
           }       	    
           gridAnexos.addRow(aLinha);               
     	}  
     }
   	gridAnexos.renderRows();
 
+  }
+
+  function js_downloadAnexo(sArquivo) {
+
+	 if (!confirm('Deseja realizar o Download do Anexo?')) {
+	   return false;
+	 }
+	   
+	 window.open("db_download.php?arquivo="+sArquivo);
   } 
 
   function js_alterarSituacaoAnexo(iAnexo, sSituacao) {
